@@ -3,7 +3,7 @@ Vue.createApp ( {
     {
         return {
             name: null, 
-            message: "Virker det her?",
+            message: "Hallooooo",
         }
     }, 
     methods: {
