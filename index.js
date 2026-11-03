@@ -5,30 +5,43 @@ Vue.createApp({
     data() {
         return {
             records: [],
+            searchType: "title",
+            searchValue: "",
             message: "Indlæser records..."
         }
     },
 
     methods: {
-        async getRecords() {
+        async getRecords(params = {}) {
             try {
-                const response = await axios.get(baseUrl);
-
-                // Vis API-svaret i konsollen
-                console.log("API response:", response);
-                console.log("API data:", response.data);
+                const response = await axios.get(baseUrl, {
+                    params: params
+                });
 
                 this.records = response.data;
-
-                console.log("Records:", this.records);
-
-                this.message = "Records hentet!";
+                this.message = this.records.length + " records found.";
             }
             catch (error) {
                 console.error("Fejl ved hentning:", error);
-
-                this.message = "Kunne ikke hente records.";
+                this.message = "Could not retrieve records.";
             }
+        },
+
+        searchRecords() {
+            const params = {};
+
+            if (this.searchValue.trim() !== "") {
+                params[this.searchType] = this.searchValue;
+            }
+
+            this.getRecords(params);
+        },
+
+        resetSearch() {
+            this.searchType = "title";
+            this.searchValue = "";
+
+            this.getRecords();
         }
     },
 

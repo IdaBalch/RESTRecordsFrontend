@@ -21,6 +21,38 @@
 
     <div id="app">
 
+        <h1>Alle records</h1>
+
+
+        <div class="row mb-3">
+
+            <div class="col-md-3">
+                <select v-model="searchType" class="form-select">
+                    <option value="title">Title</option>
+                    <option value="artist">Artist</option>
+                    <option value="maxDuration">Max Duration</option>
+                    <option value="publicationYear">Publication Year</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <input v-model="searchValue" class="form-control" type="text" placeholder="Enter search value"
+                    @keyup.enter="searchRecords">
+            </div>
+
+            <div class="col-md-3">
+                <button class="btn btn-primary" @click="searchRecords">
+                    Search
+                </button>
+
+                <button class="btn btn-secondary ms-2" @click="resetSearch">
+                    Reset
+                </button>
+            </div>
+
+        </div>
+
+
 
         <table class="table table-striped table-hover">
             <thead>
