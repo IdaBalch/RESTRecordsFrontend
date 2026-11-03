@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="da">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,7 @@
     <title>Records</title>
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-          rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Vue 3 -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -16,11 +16,34 @@
     <!-- Axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
+
 <body>
 
     <div id="app">
 
-        {{message}}
+
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Artist</th>
+                    <th>Duration (seconds)</th>
+                    <th>Publication Year</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr v-for="record in records" :key="record.id">
+                    <td>{{ record.id }}</td>
+                    <td>{{ record.title }}</td>
+                    <td>{{ record.artist }}</td>
+                    <td>{{ record.duration }}</td>
+                    <td>{{ record.publicationYear }}</td>
+                </tr>
+            </tbody>
+        </table>
+
         <!-- Dit Vue-indhold kommer her -->
     </div>
 
@@ -31,4 +54,5 @@
     <script src="index.js"></script>
 
 </body>
+
 </html>
