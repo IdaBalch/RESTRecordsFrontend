@@ -27,7 +27,7 @@
         <div class="row mb-3">
 
             <div class="col-md-3">
-                <select v-model="searchType" class="form-select">
+                <select id="searchType" v-model="searchType" class="form-select">
                     <option value="title">Title</option>
                     <option value="artist">Artist</option>
                     <option value="maxDuration">Max Duration</option>
@@ -36,12 +36,12 @@
             </div>
 
             <div class="col-md-6">
-                <input v-model="searchValue" class="form-control" type="text" placeholder="Enter search value"
+                <input id="searchInput" v-model="searchValue" class="form-control" type="text" placeholder="Enter search value"
                     @keyup.enter="searchRecords">
             </div>
 
             <div class="col-md-3">
-                <button class="btn btn-primary" @click="searchRecords">
+                <button id="searchButton" class="btn btn-primary" @click="searchRecords">
                     Search
                 </button>
 
@@ -65,7 +65,7 @@
                 </tr>
             </thead>
 
-            <tbody>
+            <tbody id="recordsBody">
                 <tr v-for="record in records" :key="record.id">
                     <td>{{ record.id }}</td>
                     <td>{{ record.title }}</td>
