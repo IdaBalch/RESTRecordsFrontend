@@ -5,21 +5,31 @@ const loginUrl = baseUrl.replace(/\/records$/, "/auth/login");
 
 Vue.createApp({
     data() {
-        return {
-            records: [],
-            searchType: "title",
-            searchValue: "",
-            message: "",
-            auth: {
-                username: "",
-                password: ""
-            },
-            userInfo: null,
-            authMessage: "",
-            token: "",
-            isLoggingIn: false
-        };
-    },
+    return {
+        records: [],
+        searchType: "title",
+        searchValue: "",
+        message: "",
+
+        newRecord: {
+            title: "",
+            artist: "",
+            duration: 0,
+            publicationYear: 0
+        },
+
+        recordMessage: "",
+
+        auth: {
+            username: "",
+            password: ""
+        },
+        userInfo: null,
+        authMessage: "",
+        token: "",
+        isLoggingIn: false
+    };
+},
 
     methods: {
         async login() {
@@ -131,6 +141,44 @@ Vue.createApp({
             this.searchValue = "";
 
             return this.getRecords();
-        }
+        }, 
+        async addRecord() {
+    if (!this.token) return;
+
+    this.recordMessage = "";
+
+    try {
+        const response = await axios.post(
+            baseUrl,
+            this.newRecord,
+            {
+                headers: {
+                    Authorization: `Bearer ${this.token}`
+                }
+            }
+        );
+
+        console.log("Record created:", response.data);
+
+        this.recordMessage = "Record successfully created!";
+
+        // Clear form
+        this.newRecord = {
+            title: "",
+            artist: "",
+            duration: 0,
+            publicationYear: 0
+        };
+
+        // Refresh records table
+        await this.getRecords();
+
+    }
+    catch (error) {
+        console.error("Error creating record:", error);
+
+        this.recordMessage = "Could not create record.";
+    }
+},
     }
 }).mount('#app');
