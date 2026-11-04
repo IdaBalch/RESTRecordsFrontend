@@ -1,5 +1,7 @@
 
-const baseUrl = "https://localhost:7010/api/records";
+// const baseUrl = "https://localhost:7010/api/records";
+
+const baseUrl = "https://restrecordsbackend-afathbgbf4h8ecay.germanywestcentral-01.azurewebsites.net/api/records";
 
 Vue.createApp({
     data() {
