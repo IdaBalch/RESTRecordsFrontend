@@ -22,7 +22,41 @@
     <div id="app">
 
         <h1>Alle records</h1>
+    <div v-if="!userInfo" class="container mt-4">
+        <div class="card p-4" style="max-width: 400px;">
+            <h2 class="mb-3">login to see records</h2>
 
+            <div class="mb-3">
+                <label class="form-label">username</label>
+                <input v-model="auth.username" class="form-control" type="text" placeholder="Username">
+
+
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">password</label>
+                <input v-model="auth.password" class="form-control" type="password" placeholder="Password">
+
+
+            </div>
+
+            <button class="btn btn-primary" @click="login">Login</button>
+            <p v-if="authMessage" class="text-danger mt-3">
+                {{authMessage}}
+            </p>
+
+        </div>
+    </div>
+
+        <!--Logged in-->
+        <div v-else>
+            <p>
+                Logged in as {{userInfo.username}}
+                ({{userInfo.role}})
+                <button class="btn btn-danger btn-sm" @click="logout" >
+                    Logout
+                </button>                
+            </p>
 
         <div class="row mb-3">
 
@@ -75,6 +109,8 @@
                 </tr>
             </tbody>
         </table>
+
+        </div>
 
         <!-- Dit Vue-indhold kommer her -->
     </div>
