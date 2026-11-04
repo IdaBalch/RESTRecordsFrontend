@@ -23,7 +23,7 @@
 
         <h1>Alle records</h1>
     <div v-if="!userInfo" class="container mt-4">
-        <div calss="card p-4" style="max-width: 400px;">
+        <div class="card p-4" style="max-width: 400px;">
             <h2 class="mb-3">login to see records</h2>
 
             <div class="mb-3">
@@ -40,7 +40,7 @@
 
             </div>
 
-            <button class="btn btn-primary" @click="login"></button>
+            <button class="btn btn-primary" @click="login">Login</button>
             <p v-if="authMessage" class="text-danger mt-3">
                 {{authMessage}}
             </p>
@@ -57,7 +57,6 @@
                     Logout
                 </button>                
             </p>
-        </div>
 
         <div class="row mb-3">
 
@@ -110,6 +109,8 @@
                 </tr>
             </tbody>
         </table>
+
+        </div>
 
         <!-- Dit Vue-indhold kommer her -->
     </div>
